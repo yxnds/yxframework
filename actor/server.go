@@ -3,7 +3,7 @@ package actor
 import (
 	"net/http"
 
-	"github.com/wampee-sweet/yxframework/network"
+	"github.com/yxnds/yxframework/network"
 )
 
 // WorkerCreateFn Worker 工厂函数。

@@ -4,11 +4,11 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/wampee-sweet/yxframework/actor"
-	"github.com/wampee-sweet/yxframework/db"
-	"github.com/wampee-sweet/yxframework/network"
-	"github.com/wampee-sweet/yxframework/object"
-	"github.com/wampee-sweet/yxframework/yx"
+	"github.com/yxnds/yxframework/actor"
+	"github.com/yxnds/yxframework/db"
+	"github.com/yxnds/yxframework/network"
+	"github.com/yxnds/yxframework/object"
+	"github.com/yxnds/yxframework/yx"
 
 	"github.com/gorilla/websocket"
 )
