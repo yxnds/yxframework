@@ -1,4 +1,4 @@
-module yxframework
+module github.com/yxnds/yxframework
 
 go 1.26.2
 
