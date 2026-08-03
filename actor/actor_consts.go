@@ -37,6 +37,10 @@ const (
 	MsgIdNoActorGo uint32 = 8
 	// MsgIdNoActorCall 表示同步调用缺失 Actor 时交给 NilService 兜底处理的消息 ID。
 	MsgIdNoActorCall uint32 = 9
+	// MsgIdCongestionActorGo 表示异步调用拥塞 Actor 时交给拥塞兜底 Service 处理的消息 ID。
+	MsgIdCongestionActorGo uint32 = 10
+	// MsgIdCongestionActorCall 表示同步调用拥塞 Actor 时交给拥塞兜底 Service 处理的消息 ID。
+	MsgIdCongestionActorCall uint32 = 11
 )
 
 const (
@@ -93,6 +97,8 @@ const (
 	ResCodeRpcInboundCongestion int32 = -15
 	// ResCodeActorSelfCall 表示 Actor 同步调用自身写消息，框架已拒绝以避免自等待。
 	ResCodeActorSelfCall int32 = -16
+	// ResCodeActorCongestion 表示目标 Actor 已拥塞，消息已交给拥塞兜底 Service 处理。
+	ResCodeActorCongestion int32 = -17
 )
 
 const (

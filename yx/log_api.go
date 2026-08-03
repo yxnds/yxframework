@@ -66,6 +66,10 @@ type LogConf struct {
 	Level int `json:"level"`
 	// IsShowCaller 表示是否在日志中打印调用方文件和行号。
 	IsShowCaller bool `json:"is_show_caller"`
+	// DisableFile 表示是否禁用日志文件输出。
+	DisableFile bool `json:"disable_file"`
+	// IsPrintConsole 表示是否打印到控制台。
+	IsPrintConsole bool `json:"is_print_console"`
 	// DumpPath 表示日志文件输出路径。
 	DumpPath string `json:"dump_path"`
 	// DumpFileSize 表示单个日志文件最大字节数，超过后滚动文件。
@@ -88,6 +92,8 @@ type LogOptions struct {
 	Console bool
 	// PrintFunc 表示自定义日志输出函数。
 	PrintFunc func(lv LogLv, logStr string)
+	// DisableFile 表示禁用文件输出；DumpPath 非空时默认仍会输出到文件。
+	DisableFile bool
 
 	// DumpPath 表示日志文件输出路径。
 	DumpPath string

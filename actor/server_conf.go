@@ -37,6 +37,8 @@ type ServerConf struct {
 
 	// NilServiceTyp 表示内置 NilService 的类型，用于无归属消息的兜底处理。
 	NilServiceTyp uint32
+	// CongestionServiceTyp 表示内置拥塞兜底 Service 的类型，用于目标 Actor 拥塞时的兜底处理。
+	CongestionServiceTyp uint32
 
 	// RpcServiceTyp 表示框架内置 RPC 路由 Service 的类型，仅用于内部注册和路由。
 	RpcServiceTyp uint32
