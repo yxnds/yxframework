@@ -39,11 +39,10 @@ type Actor interface {
 	SetWorker(worker Worker)
 	// GetWorker 返回当前绑定的 Worker。
 	GetWorker() Worker
-	// HotUpdateWorker 投递新 Worker 并触发热更流程。
+	// HotUpdate 投递修复对象 并触发热更流程。
 	//
-	// Actor 消息循环收到热更请求后调用 newWorker.OnHotUpdate(oldWorker)，
-	// 并使用其返回值接管后续消息处理。
-	HotUpdateWorker(newWorker Worker)
+	// Actor 消息循环收到热更请求后调用 hotfixer.HotfixActor(a)
+	HotUpdate(hotfixer ActorHotfixer)
 
 	// GetId 返回 Actor ID。
 	GetId() uint64
@@ -147,4 +146,10 @@ type RpcActor interface {
 
 	// OnStop 在 RpcActor 停止时释放网络连接和等待中的调用。
 	OnStop()
+}
+
+// ActorHotfixer 负责修复 Actor；返回 false 表示修复失败，Actor 将停止。
+// HotfixActor 在 Actor 的消息循环中执行，可通过 GetWorker/SetWorker 迁移状态。
+type ActorHotfixer interface {
+	HotfixActor(a Actor) bool
 }

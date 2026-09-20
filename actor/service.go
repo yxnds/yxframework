@@ -36,8 +36,6 @@ type Service interface {
 	GetActorIds() []uint64
 	// GetActorMsgCnt 返回每个 Actor 的待处理消息数，用于状态上报。
 	GetActorMsgCnt() map[uint64]uint32
-	// HotUpdate 触发本 Service 及其所有子 Actor 的 Worker 热更。
-	HotUpdate()
 	// ClearStopActors 扫描并回收闲置 Actor 和已经完全退出的 Actor。
 	ClearStopActors()
 

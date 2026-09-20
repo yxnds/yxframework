@@ -45,9 +45,9 @@ type Server interface {
 	IsStop() bool
 	// HotUpdate 用一组新的 Worker 工厂替换全部业务 Service 的 Worker。
 	//
-	// 仅 typSet 中的业务 Service 参与热更；每个目标 Actor 会创建新的 Worker，
-	// 并通过 Actor.HotUpdateWorker 触发 newWorker.OnHotUpdate(oldWorker)。
-	HotUpdate(cfg *ServerConf, typSet map[uint32]bool)
+	// 仅 typ2Hotfixer 中包含的typ的业务 Service 参与热更；
+	// 并通过 Actor.HotUpdate 触发 hotfixer.HotfixActor(actor)。
+	HotUpdate(typ2Hotfixer map[uint32]ActorHotfixer)
 	// SyncCenterData 向 Center 同步本 Server 当前 Actor 运行态信息。
 	SyncCenterData() error
 

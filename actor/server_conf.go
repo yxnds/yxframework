@@ -99,8 +99,5 @@ type ServerConf struct {
 	// Typ2WorkshopCreateFn 保存 Service 自身 Worker 工厂，键为 Service 类型。
 	Typ2WorkshopCreateFn map[uint32]WorkerCreateFn
 
-	// Typ2HotWorkerCreateFn 保存热更的普通 Actor Worker 工厂，键为 Service 类型。
-	Typ2HotWorkerCreateFn map[uint32]WorkerCreateFn
-	// Typ2HotWorkshopCreateFn 保存热更的 Service 自身 Worker 工厂，键为 Service 类型。
-	Typ2HotWorkshopCreateFn map[uint32]WorkerCreateFn
+	Typ2Hotfixer map[uint32]ActorHotfixer
 }
