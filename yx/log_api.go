@@ -59,6 +59,16 @@ const (
 	FormatJSON
 )
 
+// RotationPeriod 控制日志文件按本地日历时间轮动，空值禁用时间轮动。
+type RotationPeriod string
+
+const (
+	RotationNone   RotationPeriod = ""
+	RotationHourly RotationPeriod = "hourly"
+	RotationDaily  RotationPeriod = "daily"
+	RotationWeekly RotationPeriod = "weekly"
+)
+
 // LogConf 日志配置。
 // Dump 系列字段控制日志落盘的滚动策略（按文件大小或时间间隔切分）。
 type LogConf struct {
@@ -74,6 +84,10 @@ type LogConf struct {
 	DumpPath string `json:"dump_path"`
 	// DumpFileSize 表示单个日志文件最大字节数，超过后滚动文件。
 	DumpFileSize int `json:"dump_file_size"`
+	// RotationPeriod 支持 hourly、daily、weekly；空值仅按大小轮动。
+	RotationPeriod RotationPeriod `json:"rotation_period"`
+	// RotationHour 指定 daily 模式的本地轮动小时（0–23），默认 0。
+	RotationHour int `json:"rotation_hour"`
 	// DumpThreshold 表示触发强制刷盘的缓冲条数阈值。
 	DumpThreshold int `json:"dump_threshold"`
 	// DumpInterval 表示定期刷盘间隔，单位毫秒。
@@ -99,6 +113,11 @@ type LogOptions struct {
 	DumpPath string
 	// MaxFileSize 表示单个日志文件最大字节数，超过后滚动文件。
 	MaxFileSize int64
+	// RotationPeriod 按本地时间轮动：整点、每天 RotationHour 点或周一零点。
+	// 到期后下一次写入时轮动，与 MaxFileSize 同时生效。
+	RotationPeriod RotationPeriod
+	// RotationHour 仅用于 daily 模式，取值 0–23，默认 0。
+	RotationHour int
 	// FlushThreshold 表示触发刷盘的缓存条数阈值。
 	FlushThreshold int
 	// FlushInterval 表示定期刷盘间隔。
